@@ -5,12 +5,19 @@ import image_file_loader_and_transformator as iflt
 import variables as v
 
 
-def draw_triangle(approx, iflt, v):
-    side1 = np.sqrt((approx[0][0][0] - approx[1][0][0]) ** 2 + (approx[0][0][1] - approx[1][0][1]) ** 2)
-    side2 = np.sqrt((approx[1][0][0] - approx[2][0][0]) ** 2 + (approx[1][0][1] - approx[2][0][1]) ** 2)
-    side3 = np.sqrt((approx[2][0][0] - approx[0][0][0]) ** 2 + (approx[2][0][1] - approx[0][0][1]) ** 2)
+def triangle_angle(approx, v):
+    ax, ay = approx[0][0]
+    bx, by = approx[1][0]
+    cx, cy = approx[2][0]
+    side1 = np.sqrt((ax - bx) ** 2 + (ay - by) ** 2)
+    side2 = np.sqrt((bx - cx) ** 2 + (by - cy) ** 2)
+    side3 = np.sqrt((cx - ax) ** 2 + (cy - ay) ** 2)
     angle = np.arccos((side2 ** 2 + side3 ** 2 - side1 ** 2) / (2 * side2 * side3))
     v.triangle_angle = round(angle * 180 / np.pi, 0)
+
+
+def draw_triangle(approx, iflt, v):
+    triangle_angle(approx, v)
     text_size = cv2.getTextSize("Triangle", v.font, 0.5, 2)[0]
     triangle_points = [approx[0][0], approx[1][0], approx[2][0]]
     x_points = [point[0] for point in triangle_points]
