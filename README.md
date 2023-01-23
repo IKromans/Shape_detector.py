@@ -31,4 +31,6 @@ To run application:
 
 ![Screenshot 2023-01-22 003534](https://user-images.githubusercontent.com/66387211/213889758-76fc87ea-dd1c-41f6-83c7-18f0ea5c1ef6.jpg)
 
+To close application just press any key.
+
 Enjoy!
